@@ -4,18 +4,17 @@ class Solution {
         int end = arr.length-1;
         int peak = -1;
         while(start<end){
-            int mid = start + (end-start)/2;
+            int mid = start + (end - start)/2;
             
             if(arr[mid]<arr[mid+1]){
                 start = mid+1;
                 peak = mid+1;
             }
-            else if(arr[mid]>arr[mid+1]){
-                end=mid;
-                peak=mid;
+            else{
+                end = mid;
+                peak = mid;
             }
         }
-        
         return peak;
     }
 }
