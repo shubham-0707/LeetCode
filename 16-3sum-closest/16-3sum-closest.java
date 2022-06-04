@@ -7,6 +7,7 @@ class Solution {
             for(int j=i+1 ; j<nums.length ; j++){
                 for(int k=j+1 ; k<nums.length ; k++){
                     int sum = Math.abs(target-(nums[i]+nums[j]+nums[k]));
+                    
                     if(mini>sum){
                         mini=sum;
                         ans = nums[i]+nums[j]+nums[k];
@@ -14,6 +15,7 @@ class Solution {
                 }
             }
         }
+        
         return ans;
     }
 }
