@@ -11,23 +11,27 @@
 class Solution {
     public ListNode reverseList(ListNode head) {
         
-        if(head==null || head.next==null){
+        if(head==null){
             return head;
         }
         
-        ListNode prevNode = head;
-        ListNode currNode = head.next;
+        ArrayList<Integer> arr = new ArrayList<Integer>();
         
-        while(currNode!=null){
-            ListNode nextNode = currNode.next;
-            currNode.next = prevNode;
-            
-            prevNode = currNode;
-            currNode = nextNode;
+        ListNode newnode = head;
+        while(newnode!=null){
+            arr.add(newnode.val);
+            newnode=newnode.next;
         }
-        head.next = null;
-        head = prevNode;
         
+        Collections.reverse(arr);
+        
+        newnode=head;
+        int x = 0;
+        while(newnode!=null){
+            newnode.val = arr.get(x);
+            x++;
+            newnode=newnode.next;
+        }
         return head;
     }
 }
