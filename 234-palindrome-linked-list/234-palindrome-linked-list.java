@@ -10,22 +10,21 @@
  */
 class Solution {
     public boolean isPalindrome(ListNode head) {
-        Stack<Integer> LL = new Stack<>();
+        Stack<Integer> st = new Stack<Integer>();
         
         ListNode newnode = head;
         while(newnode!=null){
-            LL.push(newnode.val);
+            st.push(newnode.val);
             newnode=newnode.next;
         }
         
-        newnode=head;
+        newnode = head;
         while(newnode!=null){
-            if(LL.pop()!=newnode.val){
+            if(st.pop()!=newnode.val){
                 return false;
             }
             newnode=newnode.next;
         }
-        
         return true;
     }
 }
