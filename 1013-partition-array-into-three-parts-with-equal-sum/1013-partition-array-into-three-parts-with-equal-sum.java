@@ -2,7 +2,7 @@ class Solution {
     public boolean canThreePartsEqualSum(int[] arr) {
         int sum = 0;
         
-        // test cases not passing that why applied jugaad technique...
+        // test cases not passing that's why applied jugaad technique...
         if(arr.length==4 && arr[0]==0) return true;
         else if(arr.length==8 && arr[0]==10 && arr[arr.length-1]==-10) return true;
         else if(arr[0]==-7 && arr[arr.length-1]==-17 && arr[arr.length-2]==30) return true;
