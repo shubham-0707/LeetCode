@@ -33,66 +33,65 @@ class Sorting
 class Solution
 {
     
-    public static long merge(long[] arr , int left, int mid, int right) {
-        int i = left, j = mid, k = 0;
-        long invCount = 0;
-        long[] temp = new long[(right - left + 1)];
- 
-        while ((i < mid) && (j <= right)) {
-            if (arr[i] <= arr[j]) {
+    public static long merge(long[] arr , int start , int mid , int end){
+        long inv_count=0;
+        long[] temp = new long[end-start+1];
+        
+        int i=start;
+        int j = mid;
+        int k = 0;
+        
+        while(i<mid && j<=end){
+            if(arr[i]<=arr[j]){
                 temp[k] = arr[i];
                 ++k;
                 ++i;
-            } 
-            else {
+            }
+            else{
                 temp[k] = arr[j];
-                invCount += (mid - i);
+                inv_count+=(mid-i);
                 ++k;
                 ++j;
             }
         }
- 
-        while (i < mid) {
+        
+        while(i<mid){
             temp[k] = arr[i];
             ++k;
             ++i;
         }
- 
-        while (j <= right) {
+        
+        while(j<=end){
             temp[k] = arr[j];
             ++k;
             ++j;
         }
- 
-        for (i = left, k = 0; i <= right; i++, k++) {
+        
+        for(i=start , k=0 ; i<=end ; i++ , k++){
             arr[i] = temp[k];
         }
- 
-        return invCount;
-    }
-    public static long mergeSort(long[] arr , int left, int right) {
-        long invCount = 0;
- 
-        if (right > left) {
-            int mid = (right + left) / 2;
- 
-            invCount = mergeSort(arr, left, mid);
-            invCount += mergeSort(arr, mid + 1, right);
-            invCount += merge(arr, left, mid + 1, right);
-        }
-        return invCount;
+        
+        
+        return inv_count;
     }
     
+    public static long mergeSort(long[] arr , int start , int end){
+        long inv_count = 0;
+        
+        if(end>start){
+            int mid = (start+end)/2;
+            inv_count+=mergeSort(arr , start , mid);
+            inv_count+=mergeSort(arr , mid+1 , end);
+            inv_count+=merge(arr , start , mid+1 , end);
+        }
+        return inv_count;
+    }
     // arr[]: Input Array
     // N : Size of the Array arr[]
     //Function to count inversions in the array.
     static long inversionCount(long arr[], long N)
     {
-        // Your Code Here...
-        
-        
-        long count = mergeSort(arr , 0 , arr.length-1);
-        
-        return count;
+        // Your Code Here....
+        return mergeSort(arr , 0 , arr.length-1);
     }
 }
