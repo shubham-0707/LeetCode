@@ -1,6 +1,8 @@
 class Solution {
     public int subsetXORSum(int[] nums) {
         
+        
+        // generating subsets of the given array since the constraints are small...
         ArrayList<ArrayList<Integer>> arr = new ArrayList<>();
         
         for(int i=0 ; i<(1<<nums.length) ; i++){
@@ -13,7 +15,7 @@ class Solution {
             arr.add(temp);
         }
         
-        
+        // Calculating the sum of each subarray value where value is equal to the xor of all the elements of that subarray...
         int sum = 0;
         for(int i=0 ; i<arr.size() ; i++){
             int xor = 0;
