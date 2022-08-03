@@ -1,36 +1,21 @@
 class Solution {
-    
-    public boolean binary_search(int[] arr , int key){
-        int start=0;
-        int end = arr.length-1;
-        
-        while(start<=end){
-            int mid = start + (end-start)/2;
-            if(arr[mid]==key){
-                return true;
-            }
-            else if(arr[mid]<key){
-                start=mid+1;
-            }
-            else{
-                end=mid-1;
-            }
-        }
-        return false;
-    }
-    
     public int missingNumber(int[] nums) {
         
-        Arrays.sort(nums);
+        // Here we are using a hashmap approach to insert all the elements of the array nums..
+        HashMap<Integer , Integer> hash = new HashMap<>();
         
-        int n=nums.length;
-        int ans=nums[0];
-        for(int i=0 ; i<=n ; i++){
-            if(binary_search(nums , i)==false){
-                ans = i;
-                break;
+        for(int i=0 ; i<nums.length ; i++){
+            hash.put(nums[i] , hash.getOrDefault(nums[i] , 0)+1);
+        }
+        
+                // if any element from 0 to n-1 is not present in the hashmap then simply return that number...
+        for(int i=0 ; i<nums.length ; i++){
+            if(!hash.containsKey(i)){
+                return i;
             }
         }
-        return ans;
+        
+        // or return the length of the array as length==n..
+        return nums.length;
     }
 }
