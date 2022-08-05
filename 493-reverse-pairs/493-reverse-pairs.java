@@ -1,42 +1,40 @@
 class Solution {
     
-    public static int merge(int[] arr , int start , int mid , int end){
+    public static int merge(int[] arr ,  int start , int mid , int end){
         int count = 0;
-        int j = mid+1;
-        
-        for(int i=start ; i<=mid ; i++){
+        int j=mid+1;
+        for(int i=start  ; i<=mid ; i++){
             while(j<=end && arr[i]>2*(long)arr[j]){
                 j++;
             }
-            count += (j-(mid+1));
+            count+=(j-(mid+1));
         }
         
-        int i = start;
-        int jt = mid+1;
+        int low = start;
+        int high=mid+1;
         
-        ArrayList<Integer> temp = new ArrayList<>();
-        while(i<=mid && jt<=end){
-            if(arr[i]<=arr[jt]){
-                temp.add(arr[i]);
-                i++;
+        ArrayList<Integer> ans = new ArrayList<>();
+        while(low<=mid && high<=end){
+            if(arr[low]<=arr[high]){
+                ans.add(arr[low]);
+                low++;
             }
             else{
-                temp.add(arr[jt]);
-                jt++;
+                ans.add(arr[high]);
+                high++;
             }
         }
-        
-        while(i<=mid){
-            temp.add(arr[i]);
-            i++;
+        while(low<=mid){
+            ans.add(arr[low]);
+            low++;
         }
-        while(jt<=end){
-            temp.add(arr[jt]);
-            jt++;
+        while(high<=end){
+            ans.add(arr[high]);
+            high++;
         }
         
         for(int idx=start ; idx<=end ; idx++){
-            arr[idx] = temp.get(idx-start);
+            arr[idx] = ans.get(idx-start);
         }
         
         return count;
@@ -44,6 +42,7 @@ class Solution {
     
     public static int mergeSort(int[] arr , int start , int end){
         int count = 0;
+        
         if(start<end){
             int mid = start + (end-start)/2;
             count+=mergeSort(arr , start , mid);
