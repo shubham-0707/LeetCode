@@ -8,17 +8,11 @@ class Solution {
         
         int prevSum=0;
         for(int i=0 ; i<nums.length ; i++){
-            if(i==0){
-                prevSum=0;
-            }
-            else{
-                prevSum+=nums[i-1];
-            }
-            
             
             if(prevSum == (sum-prevSum-nums[i])){
                 return i;
             }
+            prevSum+=nums[i];
         }
         return -1;
     }
