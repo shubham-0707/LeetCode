@@ -1,25 +1,29 @@
 class Solution {
-    public List<List<Integer>> subsetsWithDup(int[] nums) {
-        
-        // Using hashset to avoid the problem pf duplicacy..
-        Set<List<Integer>> set = new HashSet<>();
-        
-        for(int i=0 ; i<(1<<nums.length) ; i++){
-            List<Integer> lst = new ArrayList<>();
-            
-            for(int j=0 ; j<nums.length ; j++){
-                if((i&(1<<j))>0){
-                    lst.add(nums[j]);
-                }
-            }
-            Collections.sort(lst);
-            set.add(lst);
+    
+    public static void subset(int idx , List<Integer> ds , HashSet<List<Integer>> set , int[] nums){
+        if(idx==nums.length){
+            set.add(new ArrayList<>(ds));
+            return;
         }
         
-        // Adding the elements of the hashset in the resultant list...
-        List<List<Integer>> result = new ArrayList<>();
-        result.addAll(set);
+        //picking up the element..
+        ds.add(nums[idx]);
+        subset(idx+1 , ds , set , nums);
         
-        return result;
+        //leave the element...
+        ds.remove(ds.size()-1);
+        subset(idx+1 , ds , set , nums);
+    }
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        Arrays.sort(nums);
+        List<Integer> ds = new ArrayList<>();
+        HashSet<List<Integer>> set = new HashSet<>();
+        
+        subset(0 , ds , set , nums);
+        
+        List<List<Integer>> ans = new ArrayList<>();
+        ans.addAll(set);
+        
+        return ans;
     }
 }
