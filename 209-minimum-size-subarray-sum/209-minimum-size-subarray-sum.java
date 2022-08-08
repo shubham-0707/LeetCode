@@ -1,5 +1,6 @@
 class Solution {
     public static int binary_search(int[] prefix , int key , int high){
+        
         int low = 0;
         while(low<=high){
             int mid = low + (high-low)/2;
