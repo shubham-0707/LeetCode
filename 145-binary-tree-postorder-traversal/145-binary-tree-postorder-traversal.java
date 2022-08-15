@@ -15,18 +15,26 @@
  */
 class Solution {
     
-    public static void postorder(List<Integer> ans , TreeNode root){
-        if(root==null) return;
+    public static void postOrder(TreeNode root , List<Integer> ans){
+        if(root==null){
+            return;
+        }
         
-        postorder(ans , root.left);
-        postorder(ans , root.right);
+        postOrder(root.left , ans);
+        postOrder(root.right , ans);
         ans.add(root.val);
+        
     }
     
     public List<Integer> postorderTraversal(TreeNode root) {
+        
         List<Integer> ans = new ArrayList<>();
-        postorder(ans , root);
+        
+        postOrder(root , ans);
         
         return ans;
+        
+        // Time Complexity : O(N)
+        // Space Complexity : O(1)
     }
 }
