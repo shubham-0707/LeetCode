@@ -1,5 +1,7 @@
 class Solution {
     public int romanToInt(String s) {
+        
+        
         HashMap<Character , Integer> hash = new HashMap<>();
         
         hash.put('I' , 1);
@@ -9,7 +11,6 @@ class Solution {
         hash.put('C' , 100);
         hash.put('D' , 500);
         hash.put('M' , 1000);
-        
         
         int sum = hash.get(s.charAt(s.length()-1));
         
@@ -21,9 +22,6 @@ class Solution {
                 sum-=hash.get(s.charAt(i));
             }
         }
-        
-        
-        
         return sum;
     }
 }
