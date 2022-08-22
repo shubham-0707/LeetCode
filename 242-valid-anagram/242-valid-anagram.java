@@ -1,20 +1,32 @@
 class Solution {
     public boolean isAnagram(String s, String t) {
-        int[] arr1 = new int[27];
-        for(int i=0 ; i<s.length() ; i++){
-            arr1[s.charAt(i)-97]++;
+        
+        if(s.length()!=t.length()) return false;
+        // we are going to use 2 hashmaps to solve this question...
+        
+        HashMap<Character , Integer> hash1 = new HashMap<>();
+        HashMap<Character , Integer> hash2 = new HashMap<>();
+        
+        for(int i= 0 ; i<s.length() ; i++){
+            hash1.put(s.charAt(i), hash1.getOrDefault(s.charAt(i) , 0)+1);
         }
         
-        int[] arr2 = new int[27];
         for(int i=0 ; i<t.length() ; i++){
-            arr2[t.charAt(i)-97]++;
+            hash2.put(t.charAt(i) , hash2.getOrDefault(t.charAt(i) , 0)+1);
         }
         
-        for(int i=0 ; i<27 ; i++){
-            if(arr1[i]!=arr2[i]){
+        for(char ch : hash1.keySet()){
+            if(hash2.get(ch)==null || hash2.get(ch)<hash1.get(ch)){
                 return false;
             }
         }
+        
+        for(char ch : hash2.keySet()){
+            if(hash1.get(ch)==null || hash1.get(ch)<hash2.get(ch)){
+                return false;
+            }
+        }
+        
         return true;
     }
 }
