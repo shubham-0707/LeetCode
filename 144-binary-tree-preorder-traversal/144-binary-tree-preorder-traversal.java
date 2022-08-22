@@ -34,6 +34,9 @@ class Solution {
         
         preorder(root , ans);
         
+        // Time Complexity : O(n)
+        // Space Complexity : O(1)
+        
         return ans;
     }
 }
