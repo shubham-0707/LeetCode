@@ -15,30 +15,27 @@
  */
 class Solution {
     
-    int maxi = 0;
-    
-    public static int height(TreeNode root){
+    public int height(TreeNode root , int[] diameter){
+        
         if(root==null) return 0;
-        return 1 + Math.max(height(root.left) , height(root.right));
+        
+        int lh = height(root.left , diameter);
+        
+        int rh = height(root.right , diameter);
+        
+        diameter[0] = Math.max(diameter[0] , lh+rh);
+        
+        return 1 + Math.max(lh , rh);
+        
     }
     
     public int diameterOfBinaryTree(TreeNode root) {
         
-        if(root==null) return 0;
+        int[] diameter = new int[1];
         
-        int lh = height(root.left);
-        int rh = height(root.right);
+        height(root , diameter);
         
-        maxi = Math.max(maxi , lh+rh);
-        
-        diameterOfBinaryTree(root.left);
-        diameterOfBinaryTree(root.right);
-        
-        return maxi;
-        
-        // Time Complexity : O(N)
-        // Space Complexity : O(1)
-        
+        return diameter[0];
         
     }
 }
