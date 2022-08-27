@@ -1,20 +1,25 @@
 class Solution {
     public void sortColors(int[] nums) {
         
-        // using priority queue can solve our problem....
-        
-        PriorityQueue<Integer> pq = new PriorityQueue<>();
-        
+        int[] count = new int[3];
         for(int i=0 ; i<nums.length ; i++){
-            pq.add(nums[i]);
+            count[nums[i]]++;
         }
         
-        for(int i=0 ; i<nums.length ; i++){
-            nums[i] = pq.poll();
+        int k = 0;
+        for(int i=0 ; i<count[0] ; i++){
+            nums[k++] = 0;
+        }
+        for(int i=0 ; i<count[1] ; i++){
+            nums[k++]=1;
+        }
+        for(int i=0 ; i<count[2] ; i++){
+            nums[k++]=2;
         }
         
-        // Time Complexity : O(n*log(n))
-        // Space Complexity : O(n)
+        
+        // Time Complexity : O(N)
+        // Space Complexity : O(N)
         
     }
 }
