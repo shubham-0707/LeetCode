@@ -15,26 +15,21 @@
  */
 class Solution {
     
-    public static boolean isSymmetricHelp(TreeNode left , TreeNode right){
-        if(left==null || right == null){
-            return left==right;
-        }
+    public boolean isSymmetric2(TreeNode left , TreeNode right){
+        if(left==null || right==null) return left==right;
         
-        if(left.val!=right.val){
-            return false;
-        }
+        if(left.val !=right.val) return false;
         
-        return isSymmetricHelp(left.left , right.right)
-               &&
-               isSymmetricHelp(left.right , right.left);
+        return isSymmetric2(left.left , right.right) 
+               &&                                  
+               isSymmetric2(left.right , right.left);
     }
     
     public boolean isSymmetric(TreeNode root) {
         
-        return root==null || isSymmetricHelp(root.left , root.right);
+        if(root==null) return true;
         
-        // Time Complexity : O(N)
-        // Space Complexity : O(N)
-         
+        return isSymmetric2(root.left , root.right);
+    
     }
 }
