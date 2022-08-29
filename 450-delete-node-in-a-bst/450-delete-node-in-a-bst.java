@@ -15,20 +15,19 @@
  */
 class Solution {
     
-    public static int minv(TreeNode root){
-        int min = root.val;
-        while(root.left!=null){
-            min = root.left.val;
-            root = root.left;
-        }
+    public int minv(TreeNode root){
+        int mini = root.val;
         
-        return min; 
+        while(root!=null){
+            mini = root.val;
+            root=root.left;
+        }
+        return mini;
     }
     
     public TreeNode deleteNode(TreeNode root, int key) {
-        if(root==null){
-            return root;
-        }
+        
+        if(root==null) return root;
         else if(key<root.val){
             root.left = deleteNode(root.left , key);
         }
@@ -47,6 +46,5 @@ class Solution {
         }
         
         return root;
-        
     }
 }
