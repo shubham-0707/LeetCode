@@ -15,26 +15,26 @@
  */
 class Solution {
     
-    public int height(TreeNode root , int[] maxSum){
+    public static int pathSum(TreeNode root , int[] diameter){
         if(root==null) return 0;
         
-        int lh = Math.max(0 , height(root.left , maxSum));
+        int lh = Math.max(0 , pathSum(root.left , diameter));
         
-        int rh = Math.max(0 , height(root.right , maxSum));
+        int rh = Math.max(0 , pathSum(root.right , diameter));
         
-        maxSum[0] = Math.max(maxSum[0] , root.val+lh+rh);
+        diameter[0] = Math.max(diameter[0] , lh+rh+root.val);
         
         return root.val + Math.max(lh , rh);
     }
     
     public int maxPathSum(TreeNode root) {
         
-        int[] maxSum = new int[1];
-        maxSum[0] = Integer.MIN_VALUE;
+        int[] diameter = new int[1];
+        diameter[0] = Integer.MIN_VALUE;
         
-        height(root , maxSum);
+        pathSum(root , diameter);
         
-        return maxSum[0];
+        return diameter[0];
         
     }
 }
