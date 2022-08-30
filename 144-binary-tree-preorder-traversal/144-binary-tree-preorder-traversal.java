@@ -15,17 +15,12 @@
  */
 class Solution {
     
-    public static void preorder(TreeNode root , List<Integer> ans){
+    public static void preorder(TreeNode root , List<Integer> arr){
+        if(root==null) return;
         
-        if(root==null){
-            return;
-        }
-        
-        ans.add(root.val);
-        preorder(root.left , ans);
-        preorder(root.right , ans);
-        
-        
+        arr.add(root.val);
+        preorder(root.left , arr);
+        preorder(root.right , arr);
     }
     
     public List<Integer> preorderTraversal(TreeNode root) {
@@ -34,9 +29,11 @@ class Solution {
         
         preorder(root , ans);
         
-        // Time Complexity : O(n)
+        return ans;
+        
+        
+        // Time Complexity : O(N)
         // Space Complexity : O(1)
         
-        return ans;
     }
 }
