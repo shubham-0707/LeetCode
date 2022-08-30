@@ -24,15 +24,20 @@ class Solution {
     }
     
     public boolean findTarget(TreeNode root, int k) {
-        HashMap<Integer , Integer> hash = new HashMap<>();
         
+        // hashmap is used to store the preorder of the tree in it....
+        HashMap<Integer , Integer> hash = new HashMap<>();
         preorder(root , hash);
         
+        // then hashmap is checked for the combination of two nodes which sums equals to k...
         for(int i : hash.keySet()){
             if(hash.containsKey(k-i) && (k-i)!=i){
                 return true;
             }
         }
         return false;
+        
+        // Time Complexity : O(N)
+        // Space Complexity : O(N)
     }
 }
