@@ -15,10 +15,10 @@
  */
 class Solution {
     
-    public static int maxDepth(TreeNode root){
+    public int maxDepth(TreeNode root){
         if(root==null) return 0;
         
-        return 1+Math.max(maxDepth(root.left) , maxDepth(root.right));
+        return 1 + Math.max(maxDepth(root.left) , maxDepth(root.right));
     }
     
     public boolean isBalanced(TreeNode root) {
@@ -26,7 +26,6 @@ class Solution {
         if(root==null) return true;
         
         int lh = maxDepth(root.left);
-        
         int rh = maxDepth(root.right);
         
         if(Math.abs(lh-rh)>1) return false;
@@ -37,6 +36,5 @@ class Solution {
         if(!left || !right) return false;
         
         return true;
-        
     }
 }
