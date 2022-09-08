@@ -15,16 +15,19 @@
  */
 class Solution {
     
-    public boolean recur(TreeNode root1 , TreeNode root2){
-        if(root1==null && root2==null) return true;
-        if(root1==null || root2==null) return false;
+    public boolean sameTree(TreeNode p , TreeNode q){
+        if(p==null && q==null) return true;
         
-        return root1.val==root2.val && recur(root1.left , root2.left) && recur(root1.right , root2.right);
+        if(p==null || q==null) return false;
         
+        return p.val==q.val && sameTree(p.left , q.left) && sameTree(p.right , q.right); 
     }
     
     public boolean isSameTree(TreeNode p, TreeNode q) {
-        return recur(p , q);
+        
+        
+        return sameTree(p , q);
+        
         
     }
 }
