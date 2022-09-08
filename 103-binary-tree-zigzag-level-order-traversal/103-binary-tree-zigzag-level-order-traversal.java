@@ -18,15 +18,13 @@ class Solution {
         
         List<List<Integer>> ans = new ArrayList<>();
         if(root==null) return ans;
-        
+        boolean flag = true;
         Queue<TreeNode> q = new LinkedList<>();
         q.add(root);
-        boolean flag = true;
         
         while(!q.isEmpty()){
             int num = q.size();
-            ArrayList<Integer> temp = new ArrayList<>();
-            
+            List<Integer> temp = new ArrayList<>();
             for(int i=0 ; i<num ; i++){
                 TreeNode curr = q.poll();
                 
@@ -35,9 +33,10 @@ class Solution {
                 
                 temp.add(curr.val);
             }
-            if(flag==true){
+            
+            if(flag == true){
                 ans.add(temp);
-                flag=false;
+                flag = false;
             }
             else{
                 Collections.reverse(temp);
@@ -45,12 +44,6 @@ class Solution {
                 flag = true;
             }
         }
-        
         return ans;
-        
-        // Time Complexity : O(N)
-        // Space Complexity : O(N)
-        
-        
     }
 }
