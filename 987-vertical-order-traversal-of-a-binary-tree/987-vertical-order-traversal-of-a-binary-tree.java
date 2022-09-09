@@ -15,14 +15,14 @@
  */
 
 class Tuple{
-    int x_axis;
-    int y_axis;
-    TreeNode node;
+    int x;
+    int y;
+    TreeNode root;
     
-    Tuple(int x_axis , int y_axis , TreeNode node){
-        this.x_axis = x_axis;
-        this.y_axis = y_axis;
-        this.node = node;
+    Tuple(int x , int y , TreeNode root){
+        this.x = x;
+        this.y = y;
+        this.root = root;
     }
 }
 
@@ -31,52 +31,45 @@ class Solution {
         List<List<Integer>> ans = new ArrayList<>();
         if(root==null) return ans;
         
+        TreeMap<Integer , TreeMap<Integer , PriorityQueue<Integer>>> hash = new TreeMap<>();
+        
         Queue<Tuple> q = new LinkedList<>();
         q.add(new Tuple(0 , 0 , root));
         
-        TreeMap<Integer , TreeMap<Integer , PriorityQueue<Integer>>> hash = new TreeMap<>();
-        
         while(!q.isEmpty()){
-            Tuple temp = q.poll();
+            Tuple t = q.poll();
+            int x_line = t.x;
+            int y_line = t.y;
+            TreeNode curr = t.root;
             
-            int row = temp.x_axis;
-            int col = temp.y_axis;
-            TreeNode node = temp.node;
-            
-            if(!hash.containsKey(row)){
-                hash.put(row , new TreeMap<Integer , PriorityQueue<Integer>>());
+            if(!hash.containsKey(x_line)){
+                hash.put(x_line , new TreeMap<Integer , PriorityQueue<Integer>>());
             }
             
-            if(!hash.get(row).containsKey(col)){
-                hash.get(row).put(col , new PriorityQueue<Integer>());
+            if(!hash.get(x_line).containsKey(y_line)){
+                hash.get(x_line).put(y_line , new PriorityQueue<Integer>());
             }
             
-            hash.get(row).get(col).add(node.val);
+            hash.get(x_line).get(y_line).add(curr.val);
             
-            if(node.left!=null){
-                q.add(new Tuple(row-1 , col+1 , node.left));
-            }
+            if(curr.left!=null) q.add(new Tuple(x_line-1 , y_line+1 , curr.left));
             
-            if(node.right!=null){
-                q.add(new Tuple(row+1 , col+1 , node.right));
-            }
+            if(curr.right!=null) q.add(new Tuple(x_line+1 , y_line+1 , curr.right));
+            
         }
         
-        for(TreeMap<Integer , PriorityQueue<Integer>> p : hash.values()){
+        for(TreeMap<Integer , PriorityQueue<Integer>> tree : hash.values()){
             List<Integer> temp = new ArrayList<>();
-            for(PriorityQueue<Integer> pq : p.values()){
+            for(int h : tree.keySet()){
+                PriorityQueue<Integer> pq = tree.get(h);
                 while(!pq.isEmpty()){
-                    temp.add(pq.peek());
-                    pq.poll();
+                    temp.add(pq.poll());
                 }
             }
             ans.add(temp);
         }
         
         return ans;
-        
-        // Time Complexity : O(N)
-        // Space Complexity : O(N)
         
     }
 }
