@@ -20,7 +20,7 @@ class Solution {
         
         while(root!=null){
             mini = root.val;
-            root=root.left;
+            root = root.left;
         }
         return mini;
     }
@@ -28,6 +28,7 @@ class Solution {
     public TreeNode deleteNode(TreeNode root, int key) {
         
         if(root==null) return root;
+        
         else if(key<root.val){
             root.left = deleteNode(root.left , key);
         }
@@ -35,16 +36,11 @@ class Solution {
             root.right = deleteNode(root.right , key);
         }
         else{
-            if(root.left==null){
-                return root.right;
-            }
-            else if(root.right==null){
-                return root.left;
-            }
+            if(root.left==null) return root.right;
+            else if(root.right==null) return root.left;
             root.val = minv(root.right);
             root.right = deleteNode(root.right , root.val);
         }
-        
         return root;
     }
 }
