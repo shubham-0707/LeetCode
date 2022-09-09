@@ -15,22 +15,19 @@
  */
 class Solution {
     
-    public static void invertBT(TreeNode root){
+    public void invertBT(TreeNode root){
         if(root==null) return;
-        
-        TreeNode temp = root.left;
+            
+        TreeNode curr = root.left;
         root.left = root.right;
-        root.right = temp;
+        root.right = curr;
         
         invertBT(root.left);
         invertBT(root.right);
     }
     
     public TreeNode invertTree(TreeNode root) {
-        
         invertBT(root);
-        
         return root;
-        
     }
 }
