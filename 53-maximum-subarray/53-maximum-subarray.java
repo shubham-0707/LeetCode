@@ -1,9 +1,6 @@
 class Solution {
     public int maxSubArray(int[] nums) {
         
-        
-        // This is a very classical problem to use the very famous kadanes algorithm...
-        
         int sum = 0;
         int maxi = Integer.MIN_VALUE;
         
@@ -12,13 +9,10 @@ class Solution {
             
             maxi = Math.max(maxi , sum);
             
-            if(sum<0)
-                sum=0;
+            if(sum<0) sum=0;
         }
-        return maxi;
         
-        // Time Complexity : O(N)
-        // Space Complexity : O(1)
+        return maxi;
         
     }
 }
