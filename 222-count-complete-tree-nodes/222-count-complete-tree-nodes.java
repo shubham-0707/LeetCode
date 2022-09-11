@@ -19,29 +19,32 @@ class Solution {
         int count = 0;
         while(root.left!=null){
             count++;
-            root=root.left;
+            root = root.left;
         }
+        
         return count;
     }
     
     public int getRightHeight(TreeNode root){
-        int  count = 0;
+        int count = 0;
         while(root.right!=null){
             count++;
-            root=root.right;
+            root = root.right;
         }
+        
         return count;
     }
     
     public int countNodes(TreeNode root) {
-        
+        int count = 0;
         if(root==null) return 0;
         
         int lh = getLeftHeight(root);
         int rh = getRightHeight(root);
         
-        if(lh==rh) return ((2<<lh) - 1);
-        
-        else return 1 + countNodes(root.left) + countNodes(root.right);
+        if(lh==rh){
+            return ((2<<lh)-1);
+        }
+        return 1 + countNodes(root.left) + countNodes(root.right);
     }
 }
