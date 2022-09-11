@@ -14,30 +14,33 @@
  * }
  */
 class Solution {
+    
+    public void postorder(TreeNode root , List<Integer> ans){
+        if(root==null) return;
+        
+        Stack<TreeNode> st = new Stack<>();
+        st.push(root);
+        
+        while(!st.isEmpty()){
+            TreeNode curr = st.pop();
+            ans.add(curr.val);
+            
+            if(curr.left!=null) st.push(curr.left);
+            
+            if(curr.right!=null) st.push(curr.right);
+        }
+        
+    }
+    
     public List<Integer> postorderTraversal(TreeNode root) {
         
         List<Integer> ans = new ArrayList<>();
         if(root==null) return ans;
         
-        Stack<TreeNode> st1 = new Stack<>();
-        Stack<TreeNode> st2 = new Stack<>();
+        postorder(root , ans);
         
-        st1.push(root);
-        
-        while(!st1.isEmpty()){
-            TreeNode curr = st1.pop();
-            st2.push(curr);
-            if(curr.left!=null) st1.push(curr.left);
-            if(curr.right!=null) st1.push(curr.right);
-        }
-        
-        while(!st2.isEmpty()){
-            ans.add(st2.peek().val);
-            st2.pop();
-        }
+        Collections.reverse(ans);
         return ans;
         
-        // Time Complexity : O(N)
-        // Space Complexity : O(N)
     }
 }
