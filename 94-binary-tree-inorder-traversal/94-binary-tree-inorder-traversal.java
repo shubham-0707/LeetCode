@@ -16,8 +16,9 @@
 class Solution {
     
     public void inorder(TreeNode root , List<Integer> ans){
-        Stack<TreeNode> st = new Stack<>();
         TreeNode curr = root;
+        Stack<TreeNode> st = new Stack<>();
+        
         while(!st.isEmpty() || curr!=null){
             if(curr!=null){
                 st.push(curr);
@@ -31,17 +32,13 @@ class Solution {
         }
     }
     
+    
     public List<Integer> inorderTraversal(TreeNode root) {
-        
         List<Integer> ans = new ArrayList<>();
         if(root==null) return ans;
         
         inorder(root , ans);
         
         return ans;
-        
-        // Time Complexity : O(N)
-        // Space Complexity : O(N)
-        
     }
 }
