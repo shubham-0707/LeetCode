@@ -1,9 +1,9 @@
 class Solution {
     public int subarraysDivByK(int[] nums, int k) {
         
-        
         int count = 0;
         int sum = 0;
+        
         HashMap<Integer , Integer> hash = new HashMap<>();
         hash.put(0 , 1);
         
