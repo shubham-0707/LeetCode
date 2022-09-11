@@ -22,13 +22,13 @@ class Solution {
             mini = root.val;
             root = root.left;
         }
+        
         return mini;
     }
     
     public TreeNode deleteNode(TreeNode root, int key) {
         
-        if(root==null) return root;
-        
+        if(root==null) return null;
         else if(key<root.val){
             root.left = deleteNode(root.left , key);
         }
@@ -41,6 +41,7 @@ class Solution {
             root.val = minv(root.right);
             root.right = deleteNode(root.right , root.val);
         }
+        
         return root;
     }
 }
