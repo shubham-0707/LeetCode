@@ -14,9 +14,10 @@
  * }
  */
 class Solution {
-    public List<Integer> preorderTraversal(TreeNode root) {
-        List<Integer> ans = new ArrayList<>();
-        if(root==null) return ans;
+    
+    
+    public void preorder(TreeNode root , List<Integer> ans){
+        if(root==null) return;
         
         Stack<TreeNode> st = new Stack<>();
         st.push(root);
@@ -25,13 +26,23 @@ class Solution {
             TreeNode curr = st.pop();
             ans.add(curr.val);
             
+            
             if(curr.right!=null) st.push(curr.right);
+            
             if(curr.left!=null) st.push(curr.left);
+            
         }
+        
+    }
+    
+    public List<Integer> preorderTraversal(TreeNode root) {
+        
+        List<Integer> ans = new ArrayList<>();
+        if(root==null) return ans;
+        
+        preorder(root , ans);
         
         return ans;
         
-        // Time Complexity : O(N)
-        // Space Complexity : O(N)
     }
 }
