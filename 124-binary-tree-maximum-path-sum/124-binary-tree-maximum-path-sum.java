@@ -15,17 +15,17 @@
  */
 class Solution {
     
-    public int pathsSum(TreeNode root , int[] maxi){
+    public int maxiSum(TreeNode root , int[] maxi){
+        
         if(root==null) return 0;
         
-        int lh = Math.max(0 , pathsSum(root.left , maxi));
+        int lh = Math.max(0 , maxiSum(root.left , maxi));
+        int rh = Math.max(0 , maxiSum(root.right , maxi));
         
-        int rh = Math.max(0 , pathsSum(root.right , maxi));
-        
-        maxi[0] = Math.max(maxi[0] , root.val+lh+rh);
-        
+        maxi[0] = Math.max(maxi[0] , root.val + lh + rh);
         
         return root.val + Math.max(lh , rh);
+        
     }
     
     public int maxPathSum(TreeNode root) {
@@ -34,13 +34,9 @@ class Solution {
         
         maxi[0] = Integer.MIN_VALUE;
         
-        pathsSum(root , maxi);
+        maxiSum(root , maxi);
         
         return maxi[0];
-        
-        
-        // Time Complexity : O(N)
-        // Space Complexity : O(N)
         
     }
 }
