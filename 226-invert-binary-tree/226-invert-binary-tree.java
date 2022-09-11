@@ -17,7 +17,7 @@ class Solution {
     
     public void invertBT(TreeNode root){
         if(root==null) return;
-            
+        
         TreeNode curr = root.left;
         root.left = root.right;
         root.right = curr;
@@ -28,6 +28,7 @@ class Solution {
     
     public TreeNode invertTree(TreeNode root) {
         invertBT(root);
+        
         return root;
     }
 }
