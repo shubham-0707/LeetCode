@@ -15,20 +15,23 @@
  */
 class Solution {
     
-    public static void paths(TreeNode root , int sum , List<List<Integer>> ans , List<Integer> temp){
+    public void path_Sum(List<Integer> temp , List<List<Integer>> ans , int target , TreeNode root){
         
         if(root==null) return;
         
         temp.add(root.val);
         
-        if(root.left==null && root.right==null && root.val==sum)
+        if(root.left==null && root.right==null && target==root.val){
             ans.add(new ArrayList<>(temp));
+            temp.remove(temp.size()-1);
+            return;
+        }
         
-        paths(root.left , sum-root.val , ans , temp);
-        paths(root.right , sum-root.val , ans ,temp);
+        path_Sum(temp , ans , target-root.val , root.left);
+        
+        path_Sum(temp , ans , target-root.val , root.right);
         
         temp.remove(temp.size()-1);
-        
     }
     
     public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
@@ -37,9 +40,9 @@ class Solution {
         
         List<Integer> temp = new ArrayList<>();
         
-        paths(root , targetSum , ans , temp);
-        
+        path_Sum(temp , ans , targetSum , root);
         
         return ans;
+        
     }
 }
