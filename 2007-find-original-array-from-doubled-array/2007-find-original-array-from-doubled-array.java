@@ -41,6 +41,7 @@ class Solution {
                     for(int i=0 ; i<mini ; i++){
                         ans.add(x);
                     }
+                    
                     if(hash.get(x)==hash.get(2*x)){
                         hash.remove(x);
                         hash.remove(2*x);
