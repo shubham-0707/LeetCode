@@ -3,15 +3,11 @@ class Solution {
         HashMap<Integer , Integer> hash = new HashMap<>();
         
         for(int i=0 ; i<nums.length ; i++){
-            hash.put(nums[i] , hash.getOrDefault(nums[i] ,0)+1);
+            hash.put(nums[i] , hash.getOrDefault(nums[i] , 0)+1);
+            
+            if(hash.get(nums[i])>nums.length/2) return nums[i];
         }
         
-        for(int i:hash.keySet()){
-            if(hash.get(i)>nums.length/2){
-                return i;
-            }
-        }
-        
-        return 0;
+        return -1;
     }
 }
