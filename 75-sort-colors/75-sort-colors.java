@@ -1,12 +1,13 @@
 class Solution {
     
-    public void swap(int[] nums , int left , int right){
-        int temp = nums[left];
-        nums[left] = nums[right];
-        nums[right] = temp;
+    public void swap(int[] nums , int i , int j){
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
     }
     
     public void sortColors(int[] nums) {
+        
         
         int left = 0;
         int right = nums.length-1;
@@ -18,7 +19,7 @@ class Solution {
                 i++;
             }
             else if(nums[i]==2){
-                swap(nums , i , right);
+                swap(nums , i  , right);
                 right--;
             }
             else{
