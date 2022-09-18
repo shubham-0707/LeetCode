@@ -1,23 +1,19 @@
 class Solution {
     public int maxProfit(int[] prices) {
         
-        // to buy the stock at cheapest price..
+        
+        int maxi = 0;
+        
         int mini = Integer.MAX_VALUE;
         
-        // to sell the stock at the highest possible price..
-        int maxi = Integer.MIN_VALUE;
-        
-        // to find the maximum profit ..
+        int profit = 0;
         
         for(int i=0 ; i<prices.length ; i++){
+            
+            maxi = Math.max(maxi , prices[i]-mini);
+            
             mini = Math.min(mini , prices[i]);
-            
-            int profit = prices[i] - mini;
-            
-            maxi = Math.max(maxi , profit);
         }
-        
-        // return the maximum profit...
         return maxi;
     }
 }
