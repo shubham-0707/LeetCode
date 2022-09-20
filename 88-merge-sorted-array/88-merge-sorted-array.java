@@ -3,7 +3,6 @@ class Solution {
         
         int i=m-1;
         int j = n-1;
-        
         int k = n+m-1;
         
         while(i>=0 && j>=0){
@@ -11,7 +10,7 @@ class Solution {
                 nums1[k--] = nums2[j--];
             }
             else{
-                nums1[k--] = nums1[i--];
+                nums1[k--] =  nums1[i--];
             }
         }
         
