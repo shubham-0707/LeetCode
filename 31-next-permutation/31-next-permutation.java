@@ -1,32 +1,32 @@
 class Solution {
-    public static void swap(int[] nums , int i , int j){
-        int temp = nums[i];
-        nums[i] = nums[j];
-        nums[j] = temp;
-    }
-    
-    public static void reverse(int[] nums , int start , int end){
-        while(start<end){
-            swap(nums , start , end);
-            start++;
-            end--;
-        }
-    }
-    
     public void nextPermutation(int[] nums) {
-        int i=nums.length-2;
         
-        while(i>=0 && nums[i]>=nums[i+1]){
-            i--;
-        }
-        if(i>=0){
-            int j=nums.length-1;
-            while(nums[j]<=nums[i]){
-            j--;
-        }
-        swap(nums , i , j);
-       }
+        int infpt = 0;
         
-        reverse(nums , i+1 , nums.length-1);
+        for(int i=nums.length-1 ; i>0 ; i--){
+            if(nums[i-1]<nums[i]){
+                infpt = i;
+                break;
+            }
+        }
+        
+        if(infpt==0){
+            Arrays.sort(nums);
+        }
+        else{
+            int toSwap = nums[infpt-1];
+            int mini = Integer.MAX_VALUE;
+            
+            for(int i=infpt ; i<nums.length ; i++){
+                if(nums[i]>toSwap && nums[i]-toSwap<mini){
+                    int temp = nums[i];
+                    nums[i] = nums[infpt-1];
+                    nums[infpt-1] = temp;
+                }
+            }
+            Arrays.sort(nums, infpt , nums.length);
+        }
+        
+        
     }
 }
