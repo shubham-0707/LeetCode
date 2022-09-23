@@ -18,10 +18,10 @@ class Solution {
         hash.put(1 , "I");
         
         String ans = "";
-        for(Map.Entry<Integer , String> i : hash.entrySet()){
-            while(num>=i.getKey()){
-                ans = ans + i.getValue();
-                num-=i.getKey();
+        for(int i : hash.keySet()){
+            while(num>=i){
+                ans = ans + hash.get(i);
+                num-=i;
             }
         }
         return ans;
