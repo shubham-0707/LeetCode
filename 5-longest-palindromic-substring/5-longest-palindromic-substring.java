@@ -1,4 +1,6 @@
 class Solution {
+
+    
     public String longestPalindrome(String s) {
         
         if(s.length()<=1){
@@ -10,6 +12,7 @@ class Solution {
         int end = 0;
         int max_len = 1;
         
+        // for odd length string..
         for(int i=0 ; i<n-1 ; i++){
             int l = i;
             int r = i;
@@ -31,6 +34,8 @@ class Solution {
         }
         
         
+        
+        // for even length string...
         for(int i=0 ; i<n-1 ; i++){
             int l = i;
             int r = i+1;
@@ -52,6 +57,7 @@ class Solution {
             }
         }
         
+        // returning answer....
         return s.substring(start , end+1);
         
     }
