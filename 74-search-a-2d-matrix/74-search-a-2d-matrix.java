@@ -3,44 +3,20 @@ class Solution {
         
         
         int start = 0;
-        int end = matrix.length-1;
+        int end = matrix[0].length-1;
         
-        int row = -1;
-        
-        while(start<=end){
-            int mid = start + (end-start)/2;
-            
-            if(matrix[mid][0]==target){
+        while(start<matrix.length && end>=0){
+            if(matrix[start][end]==target){
                 return true;
             }
-            else if(matrix[mid][0]<target){
-                start=mid+1;
-                row = mid;
+            else if(matrix[start][end]<target){
+                start++;
             }
             else{
-                end = mid-1;
+                end--;
             }
         }
         
-        if(row==-1){
-            return false;
-        }
-        
-        start = 0;
-        end = matrix[0].length-1;
-        
-        while(start<=end){
-            int mid = start + (end-start)/2;
-            if(matrix[row][mid]==target){
-                return true;
-            }
-            else if(matrix[row][mid]<target){
-                start = mid+1;
-            }
-            else{
-                end = mid-1;
-            }
-        }
         return false;
     }
 }
