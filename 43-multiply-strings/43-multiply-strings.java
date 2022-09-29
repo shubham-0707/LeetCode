@@ -62,16 +62,14 @@ class Solution {
             temp_ans.add(levelMul);
         }
         
-        // for(int i=0 ; i<temp_ans.size() ; i++){
-        //     System.out.println(temp_ans.get(i)+" ");
-        // }
-        
         String sum = "0";
         for(int i=0 ; i<temp_ans.size() ; i++){
             sum = add(sum , temp_ans.get(i));
         }
         
-        
         return sum;
+        
+        // Time Complexity : O(N)
+        // Space Complexity : O(N)
     }
 }
