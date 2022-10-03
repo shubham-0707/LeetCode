@@ -1,11 +1,15 @@
 class Solution {
     public int[] topKFrequent(int[] nums, int k) {
+        
+        // Linked HashMap is used to maintain the order...
         LinkedHashMap<Integer, Integer> hash = new LinkedHashMap<>();
         
         for(int i=0 ; i<nums.length ; i++){
             hash.put(nums[i] , hash.getOrDefault(nums[i] , 0)+1);
         }
         
+        
+        // the default order of the treemap is changed to insert in decreasing order as per the requirement of the question....
         TreeMap<Integer , ArrayList<Integer>> tree = new TreeMap<>(Collections.reverseOrder());
         
         for(int i:hash.keySet()){
@@ -22,6 +26,7 @@ class Solution {
         }
         
         
+        // from here the elements equal to k are inserted in the answer array of length k...
         int[] ans = new int[k];
         int count = 0;
         int x=0;
@@ -39,5 +44,8 @@ class Solution {
         }
         
         return ans;
+        
+        // Time Complexity : O(N)
+        // Space Complexity : O(N)
     }
 }
