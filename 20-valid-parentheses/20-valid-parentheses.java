@@ -16,10 +16,8 @@ class Solution {
             }
         }
         
-        if(st.isEmpty()){
-            return true;
-        }
+        if(!st.isEmpty()) return false;
         
-        return false;
+        return true;
     }
 }
