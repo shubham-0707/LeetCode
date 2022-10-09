@@ -1,39 +1,38 @@
 class MyQueue {
-    Stack<Integer> stack1;
-    Stack<Integer> stack2;
+    Stack<Integer> input;
+    Stack<Integer> output;
     public MyQueue() {
-        stack1 = new Stack<>();
-        stack2 = new Stack<>();
+        input = new Stack<>();
+        output = new Stack<>();
+    }
+    
+    public void recursion(Stack<Integer> input , Stack<Integer> output){
+        if(input.isEmpty())return;
+        
+        output.push(input.pop());
+        recursion(input , output);
     }
     
     public void push(int x) {
-        stack1.push(x);
+        input.push(x);
     }
     
     public int pop() {
-        while(!stack1.isEmpty()){
-            stack2.push(stack1.pop());
-        }
-        int res = stack2.pop();
-        while(!stack2.isEmpty()){
-            stack1.push(stack2.pop());
-        }
-        return res;
+        recursion(input , output);
+        int temp = output.pop();
+        recursion(output , input);
+        return temp;
     }
     
     public int peek() {
-        while(!stack1.isEmpty()){
-            stack2.push(stack1.pop());
-        }
-        int res = stack2.peek();
-        while(!stack2.isEmpty()){
-            stack1.push(stack2.pop());
-        }
-        return res;
+        recursion(input , output);
+        int temp = output.peek();
+        recursion(output , input);
+        return temp;
     }
     
     public boolean empty() {
-        return stack1.isEmpty();
+        return input.isEmpty();
     }
 }
 
