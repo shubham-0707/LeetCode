@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 /*package whatever //do not write package name here */
 
 import java.util.*;
@@ -25,6 +25,7 @@ class GFG {
 
 
 
+
 // } Driver Code Ends
 
 
@@ -34,13 +35,14 @@ class Solution
     public static long[] nextLargerElement(long[] arr, int n)
     { 
         // Your code here...
-        Stack<Long> st = new Stack<Long>();
-        ArrayList<Long> ans = new ArrayList<>();
         
-        for(int i=n-1 ; i>=0 ; i--){
+        Stack<Long> st = new Stack<>();
+        Stack<Long> ans = new Stack<>();
+        
+        for(int i=arr.length-1 ; i>=0 ; i--){
             if(st.isEmpty()){
                 st.push(arr[i]);
-                ans.add((long)-1);
+                ans.push((long)-1);
             }
             else{
                 while(!st.isEmpty() && st.peek()<=arr[i]){
@@ -48,22 +50,19 @@ class Solution
                 }
                 
                 if(!st.isEmpty()){
-                    ans.add(st.peek());
+                    ans.push(st.peek());
                 }
                 else{
-                    ans.add((long)-1);
+                    ans.push((long)-1);
                 }
-                
                 st.push(arr[i]);
             }
         }
         
-        
-        Collections.reverse(ans);
-        
         long[] temp = new long[ans.size()];
-        for(int i=0 ; i<ans.size() ; i++){
-            temp[i] = ans.get(i);
+        int x = 0;
+        while(!ans.isEmpty()){
+            temp[x++] = ans.pop();
         }
         
         return temp;
