@@ -34,16 +34,15 @@ class Solution {
             }
             
             else if(hash.containsKey(temp) && hash.get(temp)!=-1 && hash.get(str)!=-1){
-                count+=4*Math.min(hash.get(str) , hash.get(temp));
+                count+=Math.min(hash.get(str) , hash.get(temp));
                 hash.put(str , -1);
                 hash.put(temp , -1);
             }
             
         }
         
-        //System.out.println(maxi);
         
-        count = count+ maxi*4;
+        count = (count+ maxi)*4;
         if(flag==true) count+=2;
         
         return count;
