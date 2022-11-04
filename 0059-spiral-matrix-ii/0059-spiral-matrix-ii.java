@@ -10,29 +10,28 @@ class Solution {
         int top = 0;
         int bottom = n-1;
         
-        
         while(count<=total){
-            for(int i=left ; count<=total && i<=right; i++){
+            
+            for(int i=left ; i<=right&& count<=total ; i++){
                 ans[top][i] = count;
                 count++;
             }
             top++;
             
-            for(int i=top ; count<=total && i<=bottom ; i++){
+            for(int i=top ; i<=bottom && count<=total ; i++){
                 ans[i][right] = count;
                 count++;
             }
-            
             right--;
             
-            for(int i=right ; count<=total && i>=left ; i--){
-                ans[bottom][i]=count;
+            for(int i=right ; i>=left && count<=total ; i--){
+                ans[bottom][i] = count;
                 count++;
             }
             bottom--;
             
-            for(int i=bottom ; count<=total && i>=top ; i--){
-                ans[i][left]=count;
+            for(int i=bottom ; i>=top && count<=total ; i--){
+                ans[i][left] = count;
                 count++;
             }
             left++;
