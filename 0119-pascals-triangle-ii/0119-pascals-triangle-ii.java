@@ -1,6 +1,7 @@
 class Solution {
     public List<Integer> getRow(int rowIndex) {
         
+        
         List<List<Integer>> ans = new ArrayList<>();
         
         for(int i=1 ; i<=rowIndex+1 ; i++){
@@ -15,7 +16,6 @@ class Solution {
         
         return ans.get(rowIndex);
         
-        // Time Complexity : O(N^2);
-        // Space Complexity : O(N)
+        
     }
 }
