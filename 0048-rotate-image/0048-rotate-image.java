@@ -1,8 +1,7 @@
 class Solution {
     public void rotate(int[][] matrix) {
         
-        
-        // swapping...
+        //swapping....
         
         for(int i=0 ; i<matrix.length ; i++){
             for(int j=i+1 ; j<matrix[i].length ; j++){
@@ -23,10 +22,13 @@ class Solution {
                 matrix[i][start] = matrix[i][end];
                 matrix[i][end] = temp;
                 
+                
                 start++;
                 end--;
             }
         }
+        
+        
         
     }
 }
