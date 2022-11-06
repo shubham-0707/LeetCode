@@ -2,24 +2,25 @@ class Solution {
     public boolean increasingTriplet(int[] nums) {
         
         
+        int[] prevSmaller = new int[nums.length];
+        int[] nextGreater = new int[nums.length];
         
-        int[] prevSmallest = new int[nums.length];
-        prevSmallest[0] = nums[0];
-        
-        int[] nextLargest = new int[nums.length];
-        nextLargest[nums.length-1] = nums[nums.length-1];
+        prevSmaller[0] = nums[0];
+        nextGreater[nums.length-1] = nums[nums.length-1];
         
         for(int i=1 ; i<nums.length ; i++){
-            prevSmallest[i] = Math.min(prevSmallest[i-1] , nums[i]);
+            prevSmaller[i] = Math.min(prevSmaller[i-1] , nums[i]);
         }
         
         for(int i=nums.length-2 ; i>=0 ; i--){
-            nextLargest[i] = Math.max(nextLargest[i+1] , nums[i]);
+            nextGreater[i] = Math.max(nextGreater[i+1] , nums[i]);
         }
         
+        
         for(int i=0 ; i<nums.length ; i++){
-            if(nums[i]>prevSmallest[i] && nums[i]<nextLargest[i])
+            if(nums[i]>prevSmaller[i] && nums[i]<nextGreater[i]){
                 return true;
+            }
         }
         
         return false;
