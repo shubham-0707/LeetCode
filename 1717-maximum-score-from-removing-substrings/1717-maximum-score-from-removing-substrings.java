@@ -1,15 +1,15 @@
 class Solution {
     
-//     public boolean isAB_BA(String s){
+    public boolean isAB_BA(String s){
         
-//         for(int i=0 ; i<s.length()-1 ; i++){
-//             if((s.charAt(i)=='a' && s.charAt(i+1)=='b') || (s.charAt(i)=='b' && s.charAt(i+1)=='a')){
-//                 return true;
-//             }
-//         }
+        for(int i=0 ; i<s.length()-1 ; i++){
+            if((s.charAt(i)=='a' && s.charAt(i+1)=='b') || (s.charAt(i)=='b' && s.charAt(i+1)=='a')){
+                return true;
+            }
+        }
         
-//         return false;
-//     }
+        return false;
+    }
     
     
     public String removeAB(String str , int x){
@@ -62,9 +62,9 @@ int sum = 0;
     
 public int maximumGain(String s, int x, int y) {
         
-        //boolean flag = isAB_BA(s);
+        boolean flag = isAB_BA(s);
         
-        // while(flag){
+        while(flag){
             if(x>y){
                 s = removeAB(s , x);
                 s = removeBA(s , y);
@@ -74,8 +74,8 @@ public int maximumGain(String s, int x, int y) {
                 s = removeAB(s , x);
             }
             
-        //     flag = isAB_BA(s);
-        // }
+            flag = isAB_BA(s);
+        }
         
     
     return sum;
