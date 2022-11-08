@@ -1,27 +1,28 @@
 class Solution {
     public String makeGood(String s) {
         
+        // Previously I did this question using the iterative approach but this time I am using the Stack approach and this approach is very efficient...
+        
+        Stack<Character> st = new Stack<>();
+        
+        for(int i=0 ; i<s.length() ; i++){
+            boolean flag = false;
+            if(!st.isEmpty() && ((int)st.peek()-32 == (int)s.charAt(i) || (int)st.peek() == (int)s.charAt(i)-32)){
+                st.pop();
+                flag = true;
+            }
+            
+            if(!flag){
+                st.push(s.charAt(i));
+            }
+        }
+        
         String ans = "";
         
-        while(true){
-            int index = -1;
-            String temp = "";
-            for(int j=0 ; j<s.length()-1 ; j++){
-                if((int)s.charAt(j)==(int)s.charAt(j+1)-32 || (int)s.charAt(j)-32 == (int)s.charAt(j+1)){
-                    index = j;
-                    break;
-                }
-                else{
-                    temp = temp + s.charAt(j) + "";
-                }
-            }
-            
-            if(index==-1){
-                break;
-            }
-            
-            s = temp + s.substring(index+2);
+        while(!st.isEmpty()){
+            ans = st.pop() + ans;
         }
-        return s;
+        
+        return ans;
     }
 }
