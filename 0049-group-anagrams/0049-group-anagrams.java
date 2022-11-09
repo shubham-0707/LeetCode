@@ -1,37 +1,28 @@
 class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
         
-        HashMap<String , ArrayList<String>> hash = new HashMap<>();
+        List<List<String>> ans = new ArrayList<>();
         
+        HashMap<String , ArrayList<String>> hash = new HashMap<>();
         for(int i=0 ; i<strs.length ; i++){
-            String temp = strs[i];
-            
-            char[] ch = temp.toCharArray();
+            char[] ch = strs[i].toCharArray();
             Arrays.sort(ch);
-            temp = new String(ch);
-            
-            ArrayList<String> temp_ans = hash.get(temp);
-            
-            if(temp_ans==null){
-                temp_ans = new ArrayList<String>();
-                temp_ans.add(strs[i]);
-                hash.put(temp , temp_ans);
+            String temp = new String(ch);
+            ArrayList<String> tempi = hash.get(temp);
+            if(tempi==null){
+                tempi = new ArrayList<>();
+                tempi.add(strs[i]);
+                hash.put(temp , tempi);
             }
             else{
-                temp_ans.add(strs[i]);
+                tempi.add(strs[i]);
             }
         }
         
-        List<List<String>> ans = new ArrayList<>();
         for(String str : hash.keySet()){
-            ans.add(hash.get(str));
+            List<String> temp = hash.get(str);
+            ans.add(temp);
         }
-        
         return ans;
-        
-        
-        // Time Complexity : O(N) because string length is very small upto 100 only thats why sorting will take very less time...
-        
-        // Space Complexity : O(N)
     }
 }
