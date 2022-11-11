@@ -13,16 +13,12 @@ public class Solution {
     public ListNode detectCycle(ListNode head) {
         HashMap<ListNode , Integer> hash = new HashMap<>();
         
-        ListNode curr = head;
         
+        ListNode curr = head;
         while(curr!=null){
-            if(!hash.containsKey(curr)){
-                hash.put(curr , 1);
-            }
-            else{
-                return curr;
-            }
+            hash.put(curr , hash.getOrDefault(curr , 0)+1);
             
+            if(hash.get(curr)==2) return curr;
             curr = curr.next;
         }
         
