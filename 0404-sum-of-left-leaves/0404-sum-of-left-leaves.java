@@ -14,9 +14,9 @@
  * }
  */
 class Solution {
-    private int sum = 0;
+    int sum = 0;
     
-    public void calcSum(TreeNode root, boolean isLeft){
+    public void calcSum(TreeNode root , boolean isLeft){
         if(root==null) return;
         else if(root.left==null && root.right==null){
             if(isLeft==true){
@@ -25,8 +25,8 @@ class Solution {
             }
         }
         
-        calcSum(root.left  , true);
-        calcSum(root.right , false);
+        calcSum(root.left , true);
+        calcSum(root.right  , false);
     }
     
     public int sumOfLeftLeaves(TreeNode root) {
