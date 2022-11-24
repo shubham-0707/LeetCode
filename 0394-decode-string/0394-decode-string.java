@@ -5,6 +5,8 @@ class Solution {
         Stack<Character> st = new Stack<>();
         
         for(int i=s.length()-1 ; i>=0 ; i--){
+            
+            // here factor to which we have to multiply the string is selected...
             if(s.charAt(i)=='['){
                 int factor = -1;
                 if(i==0){
@@ -21,6 +23,8 @@ class Solution {
                     String temp = str.reverse().toString();
                     factor = Integer.parseInt(temp);
                 }
+                
+                // then string is increased the factor times and then again putted back to the stack...
                 
                 StringBuilder str = new StringBuilder();
                 while(st.peek()!=']'){
@@ -44,12 +48,18 @@ class Solution {
             }
         }
         
-        StringBuilder ans = new StringBuilder();
         
+        // here the stack content is converted to the string using string builder to return the answer...
+        
+        StringBuilder ans = new StringBuilder();
         while(!st.isEmpty()){
             ans.append(st.pop());
         }
         
+        
         return ans.toString();
+        
+        // Time Complexity : O(N)
+        // Space Complexity : O(N) since stack is used to solve this question....
     }
 }
