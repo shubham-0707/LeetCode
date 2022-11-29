@@ -10,8 +10,7 @@ class Solution {
             arr[end] = ch;
             start++;
             end--;
-        }
-        
+        } 
     }
     
     public int longestPalindrome(String[] words) {
@@ -42,9 +41,13 @@ class Solution {
         }
         
         
-        count = (count+ maxi)*4;
+        count = (count + maxi)*4;
         if(flag==true) count+=2;
         
         return count;
+        
+        
+        // Time Complexity : O(N)
+        // Space Complexity : O(N)
     }
 }
