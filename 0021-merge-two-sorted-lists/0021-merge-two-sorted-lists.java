@@ -10,6 +10,8 @@
  */
 class Solution {
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        
+        
         ListNode temp = new ListNode(0);
         ListNode ans = temp;
         
