@@ -31,55 +31,33 @@ class GFG {
 }
 // } Driver Code Ends
 
-class Pair{
-    int value;
-    int parent;
-    
-    
-    Pair(int value , int parent){
-        this.value = value;
-        this.parent = parent;
-    }
-}
 
 class Solution {
     
-    
-    public boolean checkCycle(int source , int V , ArrayList<ArrayList<Integer>> adjList , boolean[] visited){
+    public boolean dfs(int curr , int parent , boolean[] visited , ArrayList<ArrayList<Integer>> adj){
+        visited[curr] = true;
         
-        Queue<Pair> q = new LinkedList<>();
-        q.add(new Pair(source , -1));
-        
-        while(!q.isEmpty()){
-            Pair p = q.poll();
-            int curr = p.value;
-            int par = p.parent;
-            visited[curr] = true;
-            
-            for(int i=0 ; i<adjList.get(curr).size() ; i++){
-                int x = adjList.get(curr).get(i);
-                
-                if(!visited[x]){
-                    visited[x] = true;
-                    q.add(new Pair(x , curr));
-                }
-                else if(visited[x]==true && x!=par) return true;
+        for(int i=0 ; i<adj.get(curr).size() ; i++){
+            if(!visited[adj.get(curr).get(i)]){
+                visited[adj.get(curr).get(i)]=true;
+                if(dfs(adj.get(curr).get(i) , curr ,  visited , adj)) return true;
             }
+            else if(visited[adj.get(curr).get(i)]==true && adj.get(curr).get(i)!=parent) return true;
         }
         
         return false;
     }
-    
+    // Function to detect cycle in an undirected graph.
     public boolean isCycle(int V, ArrayList<ArrayList<Integer>> adj) {
-        // Code here......
+        // Code here...
         
         boolean[] visited = new boolean[V];
-        
         for(int i=0 ; i<V ; i++){
             if(!visited[i]){
-                if(checkCycle(i , V , adj , visited)) return true;
+                if(dfs(i , -1 , visited , adj)) return true;
             }
         }
+        
         return false;
     }
 }
