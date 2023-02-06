@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 import java.util.*;
 
 class MaxLenZeroSumSub
@@ -23,7 +23,8 @@ class MaxLenZeroSumSub
             T--;
         }
     }
-}// } Driver Code Ends
+}
+// } Driver Code Ends
 
 
 class GfG
@@ -31,26 +32,22 @@ class GfG
     int maxLen(int arr[], int n)
     {
         // Your code here...
-        HashMap<Integer , Integer> hash = new HashMap<>();
-        hash.put(0 , -1);
-        ArrayList<Integer> ans = new ArrayList<>();
-        int currSum=0;
+        
+        int sum = 0;
+        int maxi = 0;
+        HashMap<Integer, Integer> hash = new HashMap<>();
         for(int i=0 ; i<arr.length ; i++){
-            currSum+=arr[i];
-            if(arr[i]==0){
-                ans.add(1);
+            sum+=arr[i];
+            if(sum==0){
+                maxi = Math.max(maxi , i+1);
             }
-            else if(hash.containsKey(currSum)){
-                int length = i-hash.get(currSum);
-                ans.add(length);
+            else if(hash.containsKey(sum)){
+                maxi = Math.max(maxi , i-hash.get(sum));
             }
             
-            hash.put(currSum , hash.getOrDefault(currSum ,i));
-        }
-        
-        int maxi = 0;
-        for(int i=0 ; i<ans.size() ; i++){
-            maxi = Math.max(maxi , ans.get(i));
+            if(!hash.containsKey(sum)){
+                hash.put(sum ,i);
+            }
         }
         
         return maxi;
