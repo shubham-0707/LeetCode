@@ -2,7 +2,6 @@ class Solution {
     public char nextGreatestLetter(char[] letters, char target) {
         int ans = findCeilOfCharacters(letters, (int)target);
         if(ans==-1) return letters[0];
-        //System.out.println("Character is: "+ans);
         return (char)ans;
     }
 
@@ -18,7 +17,6 @@ class Solution {
             }
             else start = mid+1;
         }
-        //System.out.println("ans: "+ans);
         return ans;
     }
 }
