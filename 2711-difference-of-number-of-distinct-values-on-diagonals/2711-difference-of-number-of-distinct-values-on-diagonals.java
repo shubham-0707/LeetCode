@@ -40,7 +40,6 @@ class Solution {
             List<Integer> topLeft = topLeftMap.get(i);
             List<Integer> bottomRight = bottomRightMap.get(i);
             for(int j=0 ; j<grid[0].length ; j++){
-                System.out.println(topLeft.get(j)+" " + bottomRight.get(j)+" ");
                 ans[i][j] = Math.abs(topLeft.get(j)-bottomRight.get(j));
             }
         }
