@@ -5,8 +5,8 @@ class Solution {
             int m = i;
             int count = 0;
             while(m>1) {
-                if(m%2 == 1) count++;
-                m/=2;
+                count+=(m&1);
+                m = m>>1;
             }
             ans[i] = count;
             if(i!=0) ans[i]++;
